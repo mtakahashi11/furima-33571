@@ -20,29 +20,29 @@
 
 ## items テーブル
 
-| Column           | Type       | Options     |
-| ---------------- | ---------- | ----------- |
-| item_name        | text       | null: false |
-| category_id      | integer    | null: false |
-| price            | integer    | null: false |
-| condition_id     | integer    | null: false |
-| delivery_fee_id  | integer    | null: false |
-| country_id       | integer    | null: false |
-| delivery_date_id | integer    | null: false |
-| description      | text       | null: false |
-| user             | references | null: false |
+| Column           | Type       | Options           |
+| ---------------- | ---------- | ----------------- |
+| item_name        | text       | null: false       |
+| category_id      | integer    | null: false       |
+| price            | integer    | null: false       |
+| condition_id     | integer    | null: false       |
+| delivery_fee_id  | integer    | null: false       |
+| prefecture_id    | integer    | null: false       |
+| delivery_date_id | integer    | null: false       |
+| description      | text       | null: false       |
+| user             | references | foreign_key: true |
 
 ### Association
 
-- has_one    :purchasers
+- has_one    :purchaser
 - belongs_to :user
 
 ## purchasers テーブル
 
-| Column | Type       | Options     |
-| ------ | ---------- | ----------- |
-| user   | references | null: false |
-| item   | references | null: false |
+| Column | Type       | Options           |
+| ------ | ---------- | ----------------- |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
 
 ### Association
 
@@ -52,15 +52,15 @@
 
 ## purchases history テーブル
 
-| Column           | Type       | Options     |
-| ---------------- | -----------| ----------- |
-| zip_code         | integer    | null: false |
-| prefectures      | text       | null: false |
-| municipality     | text       | null: false |
-| street_number    | text       | null: false |
-| building_name    | text       | null: false |
-| telephone_number | integer    | null: false |
-| user             | references | null: false |
+| Column           | Type       | Options           |
+| ---------------- | -----------| ----------------- |
+| zip_code         | string     | null: false       |
+| prefecture_id    | integer    | null: false       |
+| municipality     | string     | null: false       |
+| street_number    | string     | null: false       |
+| building_name    | string     | null: false       |
+| telephone_number | string     | null: false       |
+| user             | references | foreign_key: true |
 
 ### Association
 
