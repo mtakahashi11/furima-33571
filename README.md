@@ -22,7 +22,7 @@
 
 | Column           | Type       | Options           |
 | ---------------- | ---------- | ----------------- |
-| item_name        | text       | null: false       |
+| item_name        | string     | null: false       |
 | category_id      | integer    | null: false       |
 | price            | integer    | null: false       |
 | condition_id     | integer    | null: false       |
@@ -52,15 +52,14 @@
 
 ## purchases history テーブル
 
-| Column           | Type       | Options           |
-| ---------------- | -----------| ----------------- |
-| zip_code         | string     | null: false       |
-| prefecture_id    | integer    | null: false       |
-| municipality     | string     | null: false       |
-| street_number    | string     | null: false       |
-| building_name    | string     | null: false       |
-| telephone_number | string     | null: false       |
-| user             | references | foreign_key: true |
+| Column           | Type       | Options     |
+| ---------------- | ---------- | ----------- |
+| zip_code         | string     | null: false |
+| prefecture_id    | integer    | null: false |
+| municipality     | string     | null: false |
+| street_number    | string     | null: false |
+| building_name    | string     |             |
+| telephone_number | string     | null: false |
 
 ### Association
 
