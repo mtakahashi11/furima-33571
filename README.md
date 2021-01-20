@@ -34,7 +34,7 @@
 
 ### Association
 
-- has_many   :purchasers
+- has_one    :purchasers
 - belongs_to :user
 
 ## purchasers テーブル
@@ -52,10 +52,15 @@
 
 ## purchases history テーブル
 
-| Column      | Type       | Options     |
-| ----------- | ---------- | ----------- |
-| purchaser   | text       | null: false |
-| address     | text       | null: false |
+| Column           | Type       | Options     |
+| ---------------- | -----------| ----------- |
+| zip_code         | integer    | null: false |
+| prefectures      | text       | null: false |
+| municipality     | text       | null: false |
+| street_number    | text       | null: false |
+| building_name    | text       | null: false |
+| telephone_number | integer    | null: false |
+| user             | references | null: false |
 
 ### Association
 
