@@ -8,7 +8,7 @@ class User < ApplicationRecord
       validates :nickname
       validates :password,            format: {with: /\A[a-zA-Z0-9]+\z/, message: "is invalid. Input half-width characters."}
     
-    with_options format: {with: /\A[ぁ-んァ-ン一-龥]/ } do
+    with_options format: {with: /\A[ぁ-んァ-ン一-龥々]+\z/ } do
       validates :first_name
       validates :last_name
     end
@@ -17,7 +17,7 @@ class User < ApplicationRecord
       validates :first_name_katakana
       validates :last_name_katakana
     end
-    
+
       validates :date_of_birth
   end
   # has_many :items
