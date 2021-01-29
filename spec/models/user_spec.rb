@@ -39,8 +39,18 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
-      it "passwordが英数字混合していなければ登録できない" do
-        @user.password = "aaaaaa"
+      it "passwordが英語のみでは登録できない" do
+        @user.password = "AAAAAA"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "passwordが数字のみでは登録できない" do
+        @user.password = "111111"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "passwordが全角では登録できない" do
+        @user.password = "１１１ａａａ"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
