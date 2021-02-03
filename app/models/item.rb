@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   with_options presence: true do
     validates :name,        length: { maximum: 40 }
     validates :description, length: { maximum: 1000 }
@@ -11,7 +10,7 @@ class Item < ApplicationRecord
     validates :price
     validates :image
   end
-  
+
   has_one    :purchaser
   belongs_to :user
   has_one_attached :image
