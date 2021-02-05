@@ -1,16 +1,16 @@
 class Item < ApplicationRecord
   with_options presence: true do
-      validates :name,        length: { maximum: 40 }
-      validates :description, length: { maximum: 1000 }
-      validates :category_id,      numericality: { other_than: 1 }
-      validates :condition_id,     numericality: { other_than: 1 }
-      validates :delivery_fee_id,  numericality: { other_than: 1 }
-      validates :prefecture_id,    numericality: { other_than: 1 }
-      validates :delivery_date_id, numericality: { other_than: 1 }
-      validates :image
-      with_options format: { with: /\A[0-9]+\z/ } do
-        validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10000000 }
-      end
+    validates :name, length: { maximum: 40 }
+    validates :description, length: { maximum: 1000 }
+    validates :category_id,      numericality: { other_than: 1 }
+    validates :condition_id,     numericality: { other_than: 1 }
+    validates :delivery_fee_id,  numericality: { other_than: 1 }
+    validates :prefecture_id,    numericality: { other_than: 1 }
+    validates :delivery_date_id, numericality: { other_than: 1 }
+    validates :image
+    with_options format: { with: /\A[0-9]+\z/ } do
+      validates :price, numericality: { greater_than_or_equal_to: 300, less_than: 10_000_000 }
+    end
   end
 
   has_one    :purchase
