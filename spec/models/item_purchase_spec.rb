@@ -29,7 +29,7 @@ RSpec.describe ItemPurchase, type: :model do
       it 'zip_codeが半角のハイフンを含んだ正しい形式でないと登録できないこと' do
         @item_purchase.zip_code = '1111111'
         @item_purchase.valid?
-        expect(@item_purchase.errors.full_messages).to include("Zip code is invalid")
+        expect(@item_purchase.errors.full_messages).to include('Zip code is invalid')
       end
       it 'prefecture_idが空だと登録できないこと' do
         @item_purchase.prefecture_id = 1
