@@ -8,7 +8,8 @@ class ItemPurchase
     validates :prefecture_id,    numericality: { other_than: 1 }
     validates :municipality
     validates :street_number
-    validates :telephone_number, format: { with: /\A\d{11}\z/ }
+    validates :telephone_number,length: { maximum: 11, message: 'Too long' }
+    validates :telephone_number, format: { with: /\A[0-9]+\z/ }
     validates :token
     validates :user_id
     validates :item_id

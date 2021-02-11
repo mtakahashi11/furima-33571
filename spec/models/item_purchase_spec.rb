@@ -11,7 +11,7 @@ RSpec.describe ItemPurchase, type: :model do
 
   describe '商品購入できるとき' do
     context 'すべての値が正しく入力されていれば商品購入できること' do
-      it 'zip_codeとprefecture_id、municipalityとstreet_number、telephone_numberとtokenが存在すれば登録できる' do
+      it 'zip_codeとprefecture_id、municipalityとstreet_number、telephone_numberとtoken、user_idとitem_idが存在すれば登録できる' do
         expect(@item_purchase).to be_valid
       end
       it 'building_nameは空でも保存できること' do
@@ -41,6 +41,11 @@ RSpec.describe ItemPurchase, type: :model do
         @item_purchase.valid?
         expect(@item_purchase.errors.full_messages).to include("Municipality can't be blank")
       end
+      it 'street_numberが空だと登録できないこと' do
+        @item_purchase.street_number = ''
+        @item_purchase.valid?
+        expect(@item_purchase.errors.full_messages).to include("Street number can't be blank")
+      end
       it 'telephone_numberが空だと登録できないこと' do
         @item_purchase.telephone_number = ''
         @item_purchase.valid?
@@ -51,8 +56,13 @@ RSpec.describe ItemPurchase, type: :model do
         @item_purchase.valid?
         expect(@item_purchase.errors.full_messages).to include('Telephone number is invalid')
       end
-      it 'telephone_numberが11文字でないと登録できないこと' do
-        @item_purchase.telephone_number = '123456789'
+      it 'telephone_numberが12桁以上の場合は登録できないこと' do
+        @item_purchase.telephone_number = '123456789012'
+        @item_purchase.valid?
+        expect(@item_purchase.errors.full_messages).to include('Telephone number Too long')
+      end
+      it 'telephone_numberが英数字混合では登録できないこと' do
+        @item_purchase.telephone_number = 'a123456789'
         @item_purchase.valid?
         expect(@item_purchase.errors.full_messages).to include('Telephone number is invalid')
       end
@@ -60,6 +70,16 @@ RSpec.describe ItemPurchase, type: :model do
         @item_purchase.token = ''
         @item_purchase.valid?
         expect(@item_purchase.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが空では登録できないこと' do
+        @item_purchase.user_id = ''
+        @item_purchase.valid?
+        expect(@item_purchase.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では登録できないこと' do
+        @item_purchase.item_id = ''
+        @item_purchase.valid?
+        expect(@item_purchase.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
